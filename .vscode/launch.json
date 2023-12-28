@@ -6,12 +6,23 @@
     "configurations": [
         {
             "type": "java",
+            "name": "p11659",
+            "request": "launch",
+            "mainClass": "test.p11659",
+            "projectName": "coding-test-study_f36af759"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
         },
         {
-            "args": ["Java", "is", "perfect."],
+            "args": [
+                "Java",
+                "is",
+                "perfect."
+            ],
             "type": "java",
             "name": "Main",
             "request": "launch",

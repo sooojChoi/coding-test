@@ -2,56 +2,40 @@ package baekjoon.Java.자료구조;
 
 import java.util.*;
 import java.io.*;
-// 시간초과 됨. 다시 하기.
+
 public class p11286 {
     public static void main(String[] args){
-        int N;
-        Queue<Integer> queue = new LinkedList<>();
-        Queue<Integer> tempQueue = new LinkedList<>();
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
         try{
-            StringTokenizer st = new StringTokenizer(bf.readLine());
-            N = Integer.parseInt(st.nextToken());
+            int N = Integer.parseInt(br.readLine());
 
-            for(int i=0; i<N; i++){
-                st = new StringTokenizer(bf.readLine());
-                int n = Integer.parseInt(st.nextToken());
+            PriorityQueue<Integer> pq = new PriorityQueue<>((o1, o2) -> {
+                int first_abs = Math.abs(o1);
+                int second_abs = Math.abs(o2);
+                if(first_abs == second_abs)
+                    return o1>o2 ? 1 : -1;
+                else
+                    return first_abs - second_abs;
+            });
 
-                if(n!=0){
-                    queue.add(n);
-                }else if(n==0 && queue.size()==0){
-                    bw.write("0\n");
-                }else{
-                    // 절댓값이 가장 작은 수들 중 가장 작은 수
-                    int min;
-                    tempQueue = new LinkedList<>();
-
-                    min = queue.poll();
-                    while(queue.size()!=0){
-                        int k = queue.poll();
-                        if(Math.abs(k)<Math.abs(min) || (Math.abs(k)==Math.abs(min) && k<0)){
-                            tempQueue.add(min);
-                            min = k;
-                        }else{
-                            tempQueue.add(k);
-                        }
+            for(int i=0;i<N;i++){
+                int request = Integer.parseInt(br.readLine());
+                if(request == 0){
+                    if(pq.isEmpty()){
+                        System.out.println("0");
+                    }else{
+                        System.out.println(pq.poll());
                     }
-                    bw.write(min+"\n");
-                    queue = tempQueue;
-                     
-
+                }else{
+                    pq.add(request);
                 }
             }
-
-
-            bw.flush();
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        }catch(Exception exception) {
         }
 
         
+
     }
     
 }

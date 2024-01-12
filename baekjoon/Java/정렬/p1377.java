@@ -19,7 +19,7 @@ class Point implements Comparable<Point> {
     }
  
 }
-// 다시 하기!!!
+
 public class p1377 {
     public static void main(String[] args){
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));

@@ -35,9 +35,45 @@ public class p11399 {
         }
     }
 
+    static int partition(int[] arr, int start, int end){
+        int pivot = arr[start];
+        int low = start;
+        int high = end+1;
+        int temp;
+
+        do{
+            do{
+                low++;
+            }while(arr[low]<pivot && low<end);
+
+            do{
+                high--;
+            }while(arr[high]>pivot && high>start);
+
+            // low와 high가 교차되지 않았으면 두 값을 교체한다.
+            if(low<high){
+                temp = arr[low];
+                arr[low ] = arr[high];
+                arr[high] = temp;
+            }
+        }while(low<high);
+
+        // pivot과 high를 교환
+        temp = arr[start];
+        arr[start] = arr[high];
+        arr[high] = temp;
+
+        return high;
+    }
     // 퀵 정렬
     static void quick_sort(int[] arr, int start, int end){
-       
+        if(start<end){
+            int pivot = partition(arr, start, end);
+
+            quick_sort(arr, start, pivot-1);
+            quick_sort(arr, pivot+1, end);
+        }
+
     }
 
     // 버블 정렬
@@ -97,53 +133,3 @@ public class p11399 {
         }
     }
 }
-
-
-
-
-// // 삽입 정렬
-// public class p11399 {
-//     public static void main(String[] main){
-//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//         try{
-//             int n = Integer.parseInt(br.readLine());
-//             int[] arr = new int[n];
-//             StringTokenizer st = new StringTokenizer(br.readLine());
-//             for(int i=0;i<n;i++){
-//                 arr[i] = Integer.parseInt(st.nextToken());
-//             }
-
-//             // 오름차순 정렬
-//             int index=1;
-//             while(index<n){
-//                 int insert_index=index;
-//                 int insert_value = arr[index];
-//                 // 적절한 위치 탐색
-//                 for(int i=0;i<index;i++){
-//                     if(arr[i]>insert_value){
-//                         insert_index=i;
-//                         break;
-//                     }
-//                 }
-//                 // index까지 shift하고 insert
-//                 for(int i=index;i>insert_index;i--){
-//                     arr[i]=arr[i-1];
-//                 }
-//                 arr[insert_index]=insert_value;
-//                 index++;
-//             }
-
-//             int sum=arr[0];
-//             for(int i=0;i<n-1;i++){
-//                 arr[i+1]=arr[i]+arr[i+1];
-//                 sum+=arr[i+1];
-//             }
-
-//             System.out.println(sum);
-    
-    
-//         }catch(Exception e){
-//             System.out.println(e);  
-//         }
-//     }
-// }

@@ -3,9 +3,10 @@ package baekjoon.Java.정렬;
 import java.io.*;
 import java.util.*;
 
-// 퀵 정렬, 병합 정렬 (둘 다 시간 초과, Arrays.sort로 되기는 함..)
+// 퀵 정렬(시간 초과), 병합 정렬 
 public class p11004 {
     static int K;
+    static int[] sorted;
     public static void main(String[] args){
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N;
@@ -16,14 +17,15 @@ public class p11004 {
             N = Integer.parseInt(st.nextToken());
             K = Integer.parseInt(st.nextToken())-1;
             arr = new int[N];
+            sorted = new int[N];
             st = new StringTokenizer(br.readLine());
             for(int i=0;i<N;i++){
                 arr[i] = Integer.parseInt(st.nextToken());
             }
 
-          //  quick_sort(arr, 0, N-1);
-            Arrays.sort(arr);
-           // merge_sort(arr, 0, N-1);
+          //  quick_sort(arr, 0, N-1);  // 시간초과 뜸. 
+           // Arrays.sort(arr);
+            merge_sort(arr, 0, N-1);
 
             System.out.println(arr[K]);
 
@@ -36,7 +38,7 @@ public class p11004 {
         int first = start;  // 첫 번째 그룹의 인덱스
         int second = mid+1;  // 두 번째 그룹의 인덱스
         int new_index = start;  // 새로운 그룹의 인덱스
-        int[] sorted = new int[arr.length];  // 새로운 그룹을 위한 배열 할당
+       // int[] sorted = new int[arr.length];  // 새로운 그룹을 위한 배열 할당
 
         while(first<=mid && second<=end){
             if(arr[first] < arr[second]){

@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 
 // 병합 정렬
 public class p2751 {
+    static int[] sorted;
     public static void main(String[] args){
           BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
           int N;
@@ -15,6 +16,7 @@ public class p2751 {
           try{
             N = Integer.parseInt(br.readLine());
             arr = new int[N];
+            sorted = new int[N];
 
             for(int i=0;i<N;i++){
               arr[i] = Integer.parseInt(br.readLine());
@@ -36,7 +38,7 @@ public class p2751 {
         int first = start;
         int second = mid+1;
         int new_index = start;
-        int[] sorted = new int[arr.length];
+        //int[] sorted = new int[arr.length];
 
         while(first<=mid &&second<=end){
             if(arr[first]<arr[second]){

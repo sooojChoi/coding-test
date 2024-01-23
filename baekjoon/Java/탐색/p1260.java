@@ -37,11 +37,6 @@ class p1260 {
             Collections.sort(arr[i]);
         }
 
-        // for(int i=1;i<n+1;i++){
-        //     if(!visited[i]){
-        //         DFS(i);
-        //     }
-        // }
         DFS(s);
         for(int i=1;i<n+1;i++){
             visited[i] = false;

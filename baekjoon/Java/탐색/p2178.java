@@ -3,7 +3,7 @@ package baekjoon.Java.탐색;
 import java.util.*;
 import java.io.*;
 
-
+// BFS 미로 탐색
 public class p2178 {
     static int[][] arr;
     static boolean[][] visited;

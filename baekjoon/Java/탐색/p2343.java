@@ -3,7 +3,7 @@ package baekjoon.Java.탐색;
 import java.io.*;
 import java.util.*;
 
-
+// 이진탐색
 public class p2343 {
     public static void main(String[] args){
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

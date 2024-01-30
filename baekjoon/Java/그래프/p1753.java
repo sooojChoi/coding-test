@@ -48,6 +48,7 @@ public class p1753 {
                 }
                 visited[edge.node] = true;
 
+                // 해당 노드에 연결된 노드들을 방문하면서 거리 탐색
                 for(Edge e:arr[edge.node]){ 
                     if(distance[e.node] > distance[edge.node]+e.weight){
                         distance[e.node] = distance[edge.node]+e.weight;

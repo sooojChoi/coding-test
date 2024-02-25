@@ -4,10 +4,11 @@ import java.io.*;
 import java.util.*;
 
 public class p1202 {
+
     public static void main(String[] args){
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N, K;
-        PriorityQueue<Jewel> jewel;  // 비싼 보석부터 뽑아내기 위해 우선순위 큐로 정의
+        ArrayList<Jewel> jewel;
         ArrayList<Long> bag; 
 
         try{
@@ -15,14 +16,7 @@ public class p1202 {
             N = Integer.parseInt(st.nextToken());
             K = Integer.parseInt(st.nextToken());
 
-            jewel = new PriorityQueue<>((o1, o2)->{
-                  // 비싼 순으로 뽑는다. 
-                if(o1.price < o2.price){
-                    return 1;
-                }else{
-                    return -1;
-                }
-            });
+            jewel = new ArrayList<>();
             bag = new ArrayList<>();
 
             for(int i = 0; i < N; i++){
@@ -35,27 +29,35 @@ public class p1202 {
                 bag.add(Long.parseLong(br.readLine()));
             }
 
-            Collections.sort(bag);  // 오름차순            
+            Collections.sort(jewel);   // 무게 기준 오름차순 정렬
+            Collections.sort(bag);  // 가방 오름차순 정렬
+            // merge_sort(0, K-1);  // 가방 오름차순 정렬
 
             long result=0;
-            // 비싼 순으로 뽑으면서, 들어갈 수 있는 가방 중 제일 작은 가방에 넣기
-            while(jewel.size()>0){ 
-                int index;
-                Jewel jw = jewel.poll();
-                if(jw.weight>bag.get(bag.size()-1)){
-                    index=-1;
+            // 가방에 넣을 수 있는 보석을 우선순위 큐에 모두 넣고
+            // 하나 꺼내 정답에 더하기. 
+            PriorityQueue<Jewel> q = new PriorityQueue<>((o1,o2)->{
+                if(o1.price > o2.price){
+                    return -1;
                 }else{
-                    index=getBagIndex(bag, jw.weight);
+                    return 1;
                 }
-                
-                if(index!=-1){
-                    result+=jw.price;
-                    bag.remove(index);
+            });
+            int jewel_index=0;
+            for(int i=0;i<K;i++){
+                for(int j=jewel_index;j<jewel.size();j++){
+                    if(jewel.get(j).weight<=bag.get(i)){
+                        q.add(jewel.get(j));
+                        jewel_index++;
+                    }else{
+                        break;
+                    }
                 }
-                if(bag.size()==0){
-                    break;
+                if(q.size()>0){
+                    result += q.poll().price;
                 }
-            }            
+            }
+
 
             System.out.println(result);
 
@@ -65,53 +67,6 @@ public class p1202 {
         }
     }
 
-    // 들어갈 수 있는 가방 중 가장 작은 가방의 인덱스를 리턴
-    // 들어갈 수 있는 가방이 없다면 -1 리턴
-    // 가방 무게는 보석 무게보다 같거나 커야 한다. 
-    static int getBagIndex(ArrayList<Long> bList, int j_weight){
-        if(bList.size()==0){
-            return -1;
-        }
-        int start=0;
-        int end=bList.size()-1;
-        int mid = (start+end)/2;
-        while(start<=end){
-            mid = (start+end)/2;
-
-            if(bList.get(mid)==j_weight){
-                // 가방 무게와 보석 무게가 같은 경우.
-                // 들어갈 수 있는 가방 중 가장 작은 가방의 인덱스
-                return mid;
-            }else if(bList.get(mid)<j_weight){
-                start=mid+1;
-            }else{
-                end=mid-1;
-            }
-        }
-        
-        // mid가 보석 무게보다 적다면, 보석 무게보다 큰 가방을 찾아서 리턴
-        // 보석 무게보다 큰 가방이 없다면 -1 리턴
-        if(bList.get(mid)<j_weight){
-            for(int i=mid+1;i<bList.size();i++){
-                if(bList.get(i)>=j_weight){
-                    return i;
-                }
-            }
-            return -1;
-        }
-        // mid가 보석 무게보다 크다면, 보석 무게보다 큰 가방 중 더 작은 가방 찾기
-        else{
-            int r=mid;
-            for(int i=mid-1;i>0;i--){
-                if(bList.get(i)>=j_weight){
-                    r=i;
-                }else{
-                    break;
-                }
-            }
-            return r;
-        }
-    }
 }
 
 
@@ -127,11 +82,11 @@ class Jewel implements Comparable<Jewel>{
 
     @Override
     public int compareTo(Jewel o) {
-        // 비싼 순으로 뽑는다. 
-        if(o.price < price){
-            return -1;
-        }else{
+        // 무게 기준 오름차순
+        if(o.weight < weight){
             return 1;
+        }else{
+            return -1;
         }
     }
 }

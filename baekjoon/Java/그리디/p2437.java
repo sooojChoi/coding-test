@@ -3,6 +3,8 @@ package baekjoon.Java.그리디;
 import java.io.*;
 import java.util.*;
 
+
+// 메모리 초과
 public class p2437 {
     static int N;
     static int[] weight;

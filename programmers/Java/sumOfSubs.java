@@ -2,6 +2,7 @@ package programmers.Java;
 
 import java.util.*;
 
+// 연속된 부분 수열의 합
 public class sumOfSubs {
     public static void main(String[] args){
         Solution_sumOfSubs sol = new Solution_sumOfSubs();

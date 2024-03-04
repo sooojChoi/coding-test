@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "sumOfSubs",
+            "request": "launch",
+            "mainClass": "programmers.Java.sumOfSubs",
+            "projectName": "coding-test-study_f36af759"
+        },
+        {
+            "type": "java",
             "name": "p2437",
             "request": "launch",
             "mainClass": "baekjoon.Java.그리디.p2437",

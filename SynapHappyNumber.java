@@ -1,5 +1,4 @@
 
-import java.io.*;
 import java.util.*;
 
 public class SynapHappyNumber {
@@ -97,10 +96,6 @@ public class SynapHappyNumber {
             System.out.println("행복 수는 "+num+"개이고 총합은 "+sum+"입니다.");
             start=range[i]+1;
         }
-
-       
-        
     }
-
 
 }

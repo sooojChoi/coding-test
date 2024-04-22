@@ -5,11 +5,14 @@ public class SynapHappyNumber {
     public static void main(String[] args){
         // 각 범위의 최댓값
         int[] range = {9, 99, 999, 9999};  
+
         // 순환되는 수, 그 과정에 있는 수를 저장하는 배열
         // -1 순환 수(sad 수), 1이면 행복 수이다. 초기값은 0
         int[] decision = new int[10000]; 
+        // 각 수를 방문했었는지 확인하는 배열
         boolean[] visit = new boolean[10000];
 
+        // 1은 1*1=1이니까 행복수이다. 
         visit[1]=true;
         decision[1]=1;
 
@@ -52,12 +55,14 @@ public class SynapHappyNumber {
                 if(visit[sum]){
                     // 행복 수로 판정된 수인 경우
                     if(decision[sum]==1){
+                        // 지금까지 계산된 값들 모두 행복수로 판정
                         for(int n: list){
                             decision[n]=1;
                         }
                     }
                     // 슬픈 수로 판정된 수, 아직 판정되지 않았지만 이제 판정될 수인 경우
                     else if(decision[sum]==-1){
+                        // 지금까지 계산된 값들 모두 슬픈수로 판정
                         for(int n: list){
                             decision[n]=-1;
                         }
@@ -67,14 +72,16 @@ public class SynapHappyNumber {
                 }else{
                     // 방문표시
                     visit[sum]=true;
-                    // 행복수로 판정
+                    // 합이 1이면 행복수로 판정
                     if(sum==1){
                         for(int n: list){
                             decision[n]=1;
                         }
                         list.clear();
                         break;
-                    }else{
+                    }
+                    // 합이 1이 아니면 sum에 대해서 위 과정을 반복한다.
+                    else{
                         number=sum;
                     }
                     
@@ -82,8 +89,8 @@ public class SynapHappyNumber {
             }
         }
 
-        int num=0;
-        int sum=0;
+        // 답을 출력한다. 
+        int num=0, sum=0;
         int start=1;
         for(int i=0;i<range.length;i++){
             for(int j=start;j<=range[i];j++){

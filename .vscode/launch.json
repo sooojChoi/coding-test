@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "p3109",
+            "request": "launch",
+            "mainClass": "baekjoon.Java.그리디.p3109",
+            "projectName": "coding-test-study_f36af759"
+        },
+        {
+            "type": "java",
             "name": "SynapHappyNumber",
             "request": "launch",
             "mainClass": "SynapHappyNumber",

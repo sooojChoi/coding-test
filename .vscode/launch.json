@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "p10026",
+            "request": "launch",
+            "mainClass": "baekjoon.Java.탐색.p10026",
+            "projectName": "coding-test-study_f36af759"
+        },
+        {
+            "type": "java",
             "name": "p3109",
             "request": "launch",
             "mainClass": "baekjoon.Java.그리디.p3109",

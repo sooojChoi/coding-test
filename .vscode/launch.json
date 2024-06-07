@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "p1038",
+            "request": "launch",
+            "mainClass": "baekjoon.Java.p1038",
+            "projectName": "coding-test_854976d3"
+        },
+        {
+            "type": "java",
             "name": "Solution",
             "request": "launch",
             "mainClass": "SSAFY.Solution",
